@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Input from '../../shared/FormElements/Input'
 import Button from '../../shared/Button'
 import { colors } from '../../../constants'
+import { NavLink } from 'react-router-dom'
 
 const Login = (props) => {
   return(
@@ -22,6 +23,13 @@ const Login = (props) => {
         <Input type={'checkbox'} placeholder={'Password1'} name={'remenberMe'}/>
       </label>
       <ButtonsWrapper>
+        <NavLink to='/registration'>
+          <Button title={'Regisrtation'}
+                  bgColor={'#008ace'}
+                  bgColorHover={'#009eef'}
+          />
+        </NavLink>
+
         <Button title={'Resset'}
                 bgColor={'#008ace'}
                 bgColorHover={'#009eef'}

@@ -2,39 +2,50 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import SearchBar from '../SearchBar/SearchBar'
 import Button from '../Button'
+import { Redirect } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const Header = (props) => {
 
-  const [isLoggedIn, setLoggedIn ] = useState(true)
+  const [isLoggedIn, setLoggedIn] = useState(true)
   const toogleLogIn = () => setLoggedIn(!isLoggedIn)
+  const logIn = () => {
+    console.log('clicked')
+    toogleLogIn()
+    return <Redirect to={'/login'} />
+  }
 
   return (
     <HeaderStyled {...props}>
       <div>
-        <a href="/">
+        <a href='/'>
           <LogoStyled>NETFLIX-LIKE</LogoStyled>
         </a>
       </div>
       <SearchBar>Search</SearchBar>
       {isLoggedIn &&
-        <WrapperStyled>
-          <Button title={'Personal Cabinet'} bgColor={'#008ace'} bgColorHover={'#009eef'} />
-          <Button title={'Logout'}
-                  bgColor={'#008ace'}
-                  bgColorHover={'#009eef'}
-                  onClick={toogleLogIn}/>
-        </WrapperStyled>}
-      {!isLoggedIn&&
-        <WrapperStyled>
-          <Button title={'Registation'}
-                  bgColor={'#f65261'}
-                  bgColorHover={'#c4414c'} />
+      <WrapperStyled>
+        <Button title={'Personal Cabinet'} bgColor={'#008ace'} bgColorHover={'#009eef'} />
+        <Button title={'Logout'}
+                bgColor={'#008ace'}
+                bgColorHover={'#009eef'}
+                onClick={toogleLogIn} />
+      </WrapperStyled>}
+      {!isLoggedIn &&
+      <WrapperStyled>
+        <Button title={'Registation'}
+                bgColor={'#f65261'}
+                bgColorHover={'#c4414c'} />
+        <NavLink to='/login'>
           <Button title={'Login'}
                   bgColor={'#f65261'}
                   bgColorHover={'#c4414c'}
-                  onClick={toogleLogIn}
+                  onClick={logIn}
           />
-        </WrapperStyled>
+        </NavLink>
+        <div>
+        </div>
+      </WrapperStyled>
       }
     </HeaderStyled>
   )
