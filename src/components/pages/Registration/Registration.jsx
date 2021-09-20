@@ -1,43 +1,90 @@
 import React from 'react'
 import styled from 'styled-components'
+import { FormikProvider, useFormik } from 'formik'
 import Input from '../../shared/FormElements/Input'
 import Button from '../../shared/Button'
 import { colors } from '../../../constants'
 
-const Registration = (props) => {
-  return(
-    <SignUpWrapper>
-      <h1>Registration</h1>
-      <InputWrapperStyled>
-        <Input type={'text'} placeholder={'Name'}/>
-        <ErrorMessage>Incorrect</ErrorMessage>
-      </InputWrapperStyled>
-      <InputWrapperStyled>
-        <Input type={'text'} placeholder={'Email'}/>
-        <ErrorMessage>Incorrect</ErrorMessage>
-      </InputWrapperStyled>
-      <InputWrapperStyled>
-        <Input type={'password'} placeholder={'Password'}/>
-        <ErrorMessage>Incorrect</ErrorMessage>
-      </InputWrapperStyled>
-      <InputWrapperStyled>
-        <Input type={'number'} placeholder={'Age'}/>
-        <ErrorMessage>Incorrect</ErrorMessage>
-      </InputWrapperStyled>
+const Registration = ({ onFormSubmit }) => {
 
-      <ButtonsWrapper>
-        <Button title={'Resset'}
-                bgColor={colors.blueColor}
-                bgColorHover={colors.blueColorHover}
-        />
-        <Button title={'Registration'}
-                bgColor={colors.redColor}
-                bgColorHover={colors.redColorHover}
-        />
-      </ButtonsWrapper>
+  const formik = useFormik({
+    initialValues: { name: '', email: '', password: '' },
+    onSubmit: values => onFormSubmit(values),
+    validate: values => {
+      const errors = {}
+      if (!values.email) {
+        errors.email = 'Required'
+      } else if (
+        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+      ) {
+        errors.email = 'Invalid email address'
+      }
+      if (!values.name) {
+        errors.name = 'Required'
+      }
+      if (!values.password) {
+        errors.password = 'Required'
+      }
+      return errors
+    },
+  })
 
-
-    </SignUpWrapper>
+  return (
+    <FormikProvider value={formik}>
+      <SignUpWrapper>
+        <form onSubmit={formik.handleSubmit}>
+          <h1>Registration</h1>
+          <InputWrapperStyled>
+            <Input
+              type={'text'}
+              placeholder={'Name'}
+              id="name"
+              value={formik.values.name}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
+            <ErrorMessage>
+              &ensp;{formik.errors.name && formik.touched.name && formik.errors.name}
+            </ErrorMessage>
+            <Input
+              type={'text'}
+              placeholder={'Email'}
+              id="email"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
+            <ErrorMessage>
+              &ensp;{formik.errors.email && formik.touched.email && formik.errors.email}
+            </ErrorMessage>
+            <Input
+              type={'password'}
+              placeholder={'Password'}
+              id="password"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              autocomplete={'current-password'}
+            />
+          </InputWrapperStyled>
+          <ErrorMessage>
+            &ensp;{formik.errors.password && formik.touched.password && formik.errors.password}
+          </ErrorMessage>
+          <ButtonsWrapper>
+            <Button title={'Resset'}
+                    bgColor={colors.blueColor}
+                    bgColorHover={colors.blueColorHover}
+                    onClick={formik.handleReset}
+            />
+            <Button type="submit"
+                    title={'Registration'}
+                    bgColor={colors.redColor}
+                    bgColorHover={colors.redColorHover}
+            />
+          </ButtonsWrapper>
+        </form>
+      </SignUpWrapper>
+    </FormikProvider>
   )
 }
 

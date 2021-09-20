@@ -1,46 +1,86 @@
 import React from 'react'
 import styled from 'styled-components'
+import { NavLink } from 'react-router-dom'
+import { Field, FormikProvider, useFormik } from 'formik'
+import { colors } from '../../../constants'
 import Input from '../../shared/FormElements/Input'
 import Button from '../../shared/Button'
-import { colors } from '../../../constants'
-import { NavLink } from 'react-router-dom'
 
-const Login = (props) => {
-  return(
-    <LoginWrapper>
-      <h1>Log In</h1>
-      <InputWrapperStyled>
-        <Input type={'text'} placeholder={'Email'}/>
-        <ErrorMessage>Incorrect</ErrorMessage>
-      </InputWrapperStyled>
-      <InputWrapperStyled>
-        <Input type={'password'} placeholder={'Password'}/>
-        <ErrorMessage>Incorrect</ErrorMessage>
-      </InputWrapperStyled>
+const Login = ({ onFormSubmit}) => {
 
-      <label htmlFor="remenberMe">
-        remember me &ensp;
-        <Input type={'checkbox'} placeholder={'Password1'} name={'remenberMe'}/>
-      </label>
-      <ButtonsWrapper>
-        <NavLink to='/registration'>
-          <Button title={'Regisrtation'}
-                  bgColor={'#008ace'}
-                  bgColorHover={'#009eef'}
-          />
-        </NavLink>
-
-        <Button title={'Resset'}
-                bgColor={'#008ace'}
-                bgColorHover={'#009eef'}
-          />
-        <Button title={'Log In'}
-                bgColor={'#f65261'}
-                bgColorHover={'#c4414c'}/>
-      </ButtonsWrapper>
+  const formik = useFormik({
+    initialValues: { email: '', password: '', rememberMe: false },
+    onSubmit: values => onFormSubmit(values) ,
+    validate: values => {
+      const errors = {}
+      if (!values.email) {
+        errors.email = 'Required'
+      } else if (
+        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+      ) {
+        errors.email = 'Invalid email address'
+      }
+      (!values.password) && (errors.password = 'Required')
+      return errors
+    }
+  })
 
 
-    </LoginWrapper>
+  return (
+    <FormikProvider value={formik}>
+      <LoginWrapper>
+        <form onSubmit={formik.handleSubmit}>
+          <h1>Log In</h1>
+          <InputWrapperStyled>
+            <Input type={'text'}
+                   placeholder={'Email'}
+                   id="email"
+                   name="email"
+                   value={formik.values.email}
+                   onChange={formik.handleChange}
+                   onBlur={formik.handleBlur}
+            />
+            <ErrorMessage>
+              &ensp;{formik.errors.email && formik.touched.email && formik.errors.email}
+            </ErrorMessage>
+            <Input type={'password'}
+                   placeholder={'Password'}
+                   id="password"
+                   name="password"
+                   value={formik.values.password}
+                   onChange={formik.handleChange}
+                   onBlur={formik.handleBlur}
+                   autocomplete={'current-password'}
+            />
+            <ErrorMessage>
+              &ensp;{formik.errors.password && formik.touched.password && formik.errors.password}
+            </ErrorMessage>
+          </InputWrapperStyled>
+          <label htmlFor="rememberMe">
+            remember me &ensp;
+            <Field type={'checkbox'} name={'rememberMe'} />
+          </label>
+          <ButtonsWrapper>
+            <Button
+              title={'Reset'}
+              bgColor={colors.blueColor}
+              bgColorHover={colors.blueColorHover}
+              onClick={formik.handleReset}
+            />
+            <Button
+              type="submit"
+              title={'Log In'}
+              bgColor={colors.redColor}
+              bgColorHover={colors.redColorHover}
+            />
+          </ButtonsWrapper>
+          <span>Dont have an account?<br />
+          Please run
+            <NavLink to="/registration" style={{ color: colors.blueColor }}> REGISTRATION </NavLink>
+        </span>
+        </form>
+      </LoginWrapper>
+    </FormikProvider>
   )
 }
 
@@ -57,19 +97,17 @@ const LoginWrapper = styled.div`
   background-color: ${'#424242'};
   border-radius: .2rem;
 `
-
 const ButtonsWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   column-gap: 10px;
 `
-
 const InputWrapperStyled = styled.div`
   display: flex;
   flex-flow: column nowrap;
-  
-`
 
+`
 const ErrorMessage = styled.span`
   color: ${colors.redColor}
 `
+

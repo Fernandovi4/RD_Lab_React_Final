@@ -1,17 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
-import Header from './components/shared/Header/Header'
-import Login from './components/pages/Login/Login'
 import { BrowserRouter, Route } from 'react-router-dom'
-import Registration from './components/pages/Registration/Registration'
+import { colors } from './constants'
+import Header from './components/shared/Header/Header'
 import Home from './components/pages/Home/Home'
-
-const AppWrapper = styled.div`
-  width: 100%;
-  min-height: 100vh;
-  //padding: 2rem;
-  background-color: ${'#232323'};
-`
+import LoginContainer from './components/pages/Login/LoginContainer'
+import RegistrationContainer from './components/pages/Registration/RegistrationContainer'
 
 function App() {
   return (
@@ -19,20 +13,25 @@ function App() {
       <AppWrapper>
         <Header />
         <ContentWrapperStyled>
-          <Route path="/login" render={() => <Login />}
+          <Route path="/login" render={() => <LoginContainer />}
           />
-          <Route path="/registration" render={() => <Registration />}
+          <Route path="/registration" render={() => <RegistrationContainer />}
           />
           <Route path="/home" render={() => <Home />}
           />
         </ContentWrapperStyled>
       </AppWrapper>
     </BrowserRouter>
-
   )
 }
 
 export default App
+
+const AppWrapper = styled.div`
+  width: 100%;
+  min-height: 100vh;
+  background-color: ${colors.backgroundFirst};
+`
 
 const ContentWrapperStyled = styled.div`
 padding: 15px;
