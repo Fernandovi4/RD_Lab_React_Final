@@ -1,46 +1,50 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import SearchBar from '../SearchBar/SearchBar'
-import Button from '../Button'
-import { Redirect } from 'react-router-dom'
+import Button from '../FormElements/Button'
 import { NavLink } from 'react-router-dom'
+import { colors } from '../../../constants'
 
-const Header = (props) => {
-
-  const [isLoggedIn, setLoggedIn] = useState(true)
-  const toogleLogIn = () => setLoggedIn(!isLoggedIn)
-  const logIn = () => {
-    console.log('clicked')
-    toogleLogIn()
-    return <Redirect to={'/login'} />
-  }
+const Header = ({ isLoggedIn, logOut }) => {
 
   return (
-    <HeaderStyled {...props}>
+    <HeaderStyled>
       <div>
-        <a href='/'>
+        <NavLink to="/">
           <LogoStyled>NETFLIX-LIKE</LogoStyled>
-        </a>
+        </NavLink>
       </div>
       <SearchBar>Search</SearchBar>
       {isLoggedIn &&
       <WrapperStyled>
-        <Button title={'Personal Cabinet'} bgColor={'#008ace'} bgColorHover={'#009eef'} />
-        <Button title={'Logout'}
-                bgColor={'#008ace'}
-                bgColorHover={'#009eef'}
-                onClick={toogleLogIn} />
+        <NavLink to="/personalcab">
+          <Button
+            title={'Personal Cabinet'}
+            bgColor={colors.blueColor}
+            bgColorHover={colors.blueColorHover}
+          />
+        </NavLink>
+        <NavLink to="/">
+        <Button
+          title={'Logout'}
+          bgColor={colors.blueColor}
+          bgColorHover={colors.blueColorHover}
+          onClick={() => logOut()}
+        />
+        </NavLink>
       </WrapperStyled>}
       {!isLoggedIn &&
       <WrapperStyled>
-        <Button title={'Registation'}
-                bgColor={'#f65261'}
-                bgColorHover={'#c4414c'} />
-        <NavLink to='/login'>
+        <NavLink to="/registration">
+          <Button title={'Registration'}
+                  bgColor={colors.redColor}
+                  bgColorHover={colors.redColorHover}
+          />
+        </NavLink>
+        <NavLink to="/login">
           <Button title={'Login'}
-                  bgColor={'#f65261'}
-                  bgColorHover={'#c4414c'}
-                  onClick={logIn}
+                  bgColor={colors.redColor}
+                  bgColorHover={colors.redColorHover}
           />
         </NavLink>
         <div>
@@ -54,24 +58,26 @@ export default Header
 
 
 const HeaderStyled = styled.header`
+  position: relative;
+  z-index: 50;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
   row-gap: 1rem;
   padding: 1rem;
-  background-color: ${'#424242'};
+  background-color: ${colors.backgroundSecond};
 `
 
 const LogoStyled = styled.div`
-  color: ${'#f65261'};
+  color: ${colors.redColor};
   text-decoration: none;
   font-weight: bold;
   letter-spacing: .3rem;
   font-size: 2rem;
 
   &:hover {
-    color: ${'#c4414c'};
+    color: ${colors.redColorHover};
     transition: .3s;
   }
 `

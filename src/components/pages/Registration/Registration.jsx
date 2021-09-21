@@ -2,50 +2,30 @@ import React from 'react'
 import styled from 'styled-components'
 import { FormikProvider, useFormik } from 'formik'
 import Input from '../../shared/FormElements/Input'
-import Button from '../../shared/Button'
+import Button from '../../shared/FormElements/Button'
 import { colors } from '../../../constants'
+import { loginRegistrationValidator } from '../../../utils/validators/loginRegistrationValidator'
+import { NavLink } from 'react-router-dom'
 
 const Registration = ({ onFormSubmit }) => {
 
   const formik = useFormik({
-    initialValues: { name: '', email: '', password: '' },
+    initialValues: { email: '', password: '' },
     onSubmit: values => onFormSubmit(values),
-    validate: values => {
-      const errors = {}
-      if (!values.email) {
-        errors.email = 'Required'
-      } else if (
-        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-      ) {
-        errors.email = 'Invalid email address'
-      }
-      if (!values.name) {
-        errors.name = 'Required'
-      }
-      if (!values.password) {
-        errors.password = 'Required'
-      }
-      return errors
-    },
+    validate: values => loginRegistrationValidator(values),
   })
 
   return (
     <FormikProvider value={formik}>
+      <ModalWrapper>
       <SignUpWrapper>
         <form onSubmit={formik.handleSubmit}>
+          <NavLink to="/">
+            <CloseWindow >	&#10006;</CloseWindow>
+          </NavLink>
           <h1>Registration</h1>
+          <br/>
           <InputWrapperStyled>
-            <Input
-              type={'text'}
-              placeholder={'Name'}
-              id="name"
-              value={formik.values.name}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            <ErrorMessage>
-              &ensp;{formik.errors.name && formik.touched.name && formik.errors.name}
-            </ErrorMessage>
             <Input
               type={'text'}
               placeholder={'Email'}
@@ -84,18 +64,34 @@ const Registration = ({ onFormSubmit }) => {
           </ButtonsWrapper>
         </form>
       </SignUpWrapper>
+      </ModalWrapper>
     </FormikProvider>
   )
 }
 
 export default Registration
 
+const ModalWrapper = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  background-color: black;
+  opacity: 0.9;
+  overflow: hidden;
+`
+
 const SignUpWrapper = styled.div`
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
   row-gap: 2rem;
-  max-width: 450px;
+  width: 450px;
   margin: 0 auto;
   padding: 10px;
   background-color: ${'#424242'};
@@ -116,4 +112,11 @@ const InputWrapperStyled = styled.div`
 
 const ErrorMessage = styled.span`
   color: ${colors.redColor}
+`
+
+const CloseWindow = styled.span`
+  float: right;
+  &:hover{
+    cursor: pointer;
+  }
 `

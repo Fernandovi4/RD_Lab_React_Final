@@ -1,18 +1,8 @@
-import {applyMiddleware, combineReducers, compose, createStore} from 'redux'
-import authReduser from './auth-reduser'
-import thunkMiddleware from 'redux-thunk'
-// import { reducer as formReducer } from 'redux-form'
+import { configureStore } from '@reduxjs/toolkit'
+import authSlice from './authSlice'
 
-const redusers = combineReducers({
-  auth: authReduser,
-  // form: formReducer
+export const store = configureStore({
+  reducer: {
+    auth: authSlice
+  },
 })
-
-let store = createStore(redusers,
-  compose(
-    applyMiddleware(thunkMiddleware),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
-)
-
-export default store

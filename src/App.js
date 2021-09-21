@@ -1,26 +1,37 @@
 import React from 'react'
 import styled from 'styled-components'
 import { BrowserRouter, Route } from 'react-router-dom'
+import { store } from './redux/store'
+import { Provider } from 'react-redux'
 import { colors } from './constants'
-import Header from './components/shared/Header/Header'
 import Home from './components/pages/Home/Home'
 import LoginContainer from './components/pages/Login/LoginContainer'
 import RegistrationContainer from './components/pages/Registration/RegistrationContainer'
+import HeaderContainer from './components/shared/Header/HeaderContainer'
+import PersonalCab from './components/pages/PersonalCab/PesonalCab'
 
 function App() {
   return (
     <BrowserRouter>
-      <AppWrapper>
-        <Header />
-        <ContentWrapperStyled>
+      <Provider store={store}>
+        <AppWrapper>
           <Route path="/login" render={() => <LoginContainer />}
           />
           <Route path="/registration" render={() => <RegistrationContainer />}
           />
-          <Route path="/home" render={() => <Home />}
-          />
-        </ContentWrapperStyled>
-      </AppWrapper>
+          <HeaderContainer />
+          <ContentWrapperStyled>
+            <Route exact path="/" render={() => <Home />}
+            />
+            <Route path="/personalcab" render={() => <PersonalCab />}
+            />
+            {/*<MovieCardContainer />*/}
+            {/*<MovieCardContainer />*/}
+            {/*<MovieCardContainer />*/}
+            {/*<MovieCardContainer />*/}
+          </ContentWrapperStyled>
+        </AppWrapper>
+      </Provider>
     </BrowserRouter>
   )
 }
