@@ -1,14 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
-import { BrowserRouter, Route } from 'react-router-dom'
-import { store } from './redux/store'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { store } from './store/store'
 import { Provider } from 'react-redux'
-import { colors } from './constants'
-import Home from './components/pages/Home/Home'
-import LoginContainer from './components/pages/Login/LoginContainer'
-import RegistrationContainer from './components/pages/Registration/RegistrationContainer'
-import HeaderContainer from './components/shared/Header/HeaderContainer'
-import PersonalCab from './components/pages/PersonalCab/PesonalCab'
+import { colors } from './utils/constants/colorConstants'
+import LoginContainer from './views/Login/LoginContainer'
+import RegistrationContainer from './views/Registration/RegistrationContainer'
+import HeaderContainer from './components/Header/HeaderContainer'
+import PersonalCab from './views/PersonalCab/PesonalCab'
+import HomeContainer from './views/Home/HomeContainer'
+import ShowsContainer from './views/Shows/ShowsContainer'
+import OneShowContainer from './views/OneShow/OneShowContainer'
 
 function App() {
   return (
@@ -21,14 +23,17 @@ function App() {
           />
           <HeaderContainer />
           <ContentWrapperStyled>
-            <Route exact path="/" render={() => <Home />}
+            <Route exact path="/" render={() => <HomeContainer />}
+            />
+            <Route exact path="/shows" render={() => <ShowsContainer />}
+            />
+            <Route exact path="/people" render={() => <ShowsContainer />}
             />
             <Route path="/personalcab" render={() => <PersonalCab />}
             />
-            {/*<MovieCardContainer />*/}
-            {/*<MovieCardContainer />*/}
-            {/*<MovieCardContainer />*/}
-            {/*<MovieCardContainer />*/}
+            <Switch>
+              <Route path="/show:id" render={() => <OneShowContainer />} />
+            </Switch>
           </ContentWrapperStyled>
         </AppWrapper>
       </Provider>
