@@ -8,6 +8,7 @@ const initialState = {
   currentPage: 1,
   isFetchingData: false,
   followingInProgress: [],
+  searchedShowName: ''
 }
 
 export const fetchAllShows = createAsyncThunk(
@@ -33,6 +34,10 @@ export const showsSlice = createSlice({
     toggleLoader: (state, action) => {
       state.isFetchingData = action.payload
     },
+    setSearchedShowName: (state, action) => {
+      state.searchedShowName = action.payload
+    },
+
   },
   extraReducers: (builder) => {
     builder.addCase(fetchAllShows.fulfilled, (state, action) => {
@@ -41,6 +46,11 @@ export const showsSlice = createSlice({
   },
 })
 
-export const { setShowsList, setTotalShowsCount, toggleLoader } = showsSlice.actions
+export const {
+  setShowsList,
+  setTotalShowsCount,
+  toggleLoader,
+  setSearchedShowName,
+} = showsSlice.actions
 
 export default showsSlice.reducer

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { colors } from '../../utils/constants/colorConstants'
 import { fonts } from '../../utils/constants/fontsConstants'
+import { NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { FromFollowBtnSt, ToFavoriteBotton } from '../../components/FormElements'
 
@@ -14,52 +15,61 @@ const OneShow = ({ show, showId, handleFollow, handleUnFollow }) => {
 
   return (
     <>
-      <OneShowWrapperSt>
+      {/*<OneShowWrapperSt>*/}
         <OneShowInnerSt>
           <ImgWrapperSt>
             <Img
               src={show.originalImgUrl}
               alt={`official poster ot the ${show.name}`} />
           </ImgWrapperSt>
-          <UlSt>
-            <TitleSt>{show.name}</TitleSt>
-            <Li><SpanSt>Title:</SpanSt> {show.name}</Li>
-            <Li><SpanSt>Genres:</SpanSt> {[...show.genres.join(' / ')]}</Li>
-            <Li><SpanSt>Average rating:</SpanSt> {show.rating}</Li>
-            <Li><SpanSt>Runtime:</SpanSt> {show.runtime} min.</Li>
-            <Li><SpanSt>Summary:</SpanSt>{show.summary}</Li>
-            <Li><SpanSt>Official site:</SpanSt><A href={show.officialSite}> {show.officialSite}</A>
-            </Li>
-            {!isThisShowFavorite ?
-              <ToFavoriteBotton
-                onClick={() => handleFollow()}
-                title={'follow'}
-              /> :
-              <FromFollowBtnSt
-                onClick={() => handleUnFollow()}
-                title={'unfollow'}
-              />}
-          </UlSt>
+          {/*<InfoWraperSt>*/}
+
+            <UlSt>
+              <NavLink to="/shows"><Span>&#10094;&#10094;&#10094;    Back to shows</Span></NavLink>
+
+              <TitleSt>{show.name}</TitleSt>
+              <Li><SpanSt>Title:</SpanSt> {show.name}</Li>
+              <Li><SpanSt>Genres:</SpanSt> {[...show.genres.join(' / ')]}</Li>
+              <Li><SpanSt>Average rating:</SpanSt> {show.rating}</Li>
+              <Li><SpanSt>Runtime:</SpanSt> {show.runtime} min.</Li>
+              <Li><SpanSt>Summary:</SpanSt>{show.summary}</Li>
+              <Li><SpanSt>Official site:</SpanSt><A href={show.officialSite}> {show.officialSite}</A>
+              </Li>
+              {!isThisShowFavorite ?
+                <ToFavoriteBotton
+                  onClick={() => handleFollow()}
+                  title={'follow'}
+                /> :
+                <FromFollowBtnSt
+                  onClick={() => handleUnFollow()}
+                  title={'unfollow'}
+                />}
+              <Li>
+                <NavLink to="/shows"><Span>&#10094;&#10094;&#10094;    Back to shows</Span></NavLink>
+              </Li>
+
+            </UlSt>
+
+          {/*</InfoWraperSt>*/}
         </OneShowInnerSt>
-      </OneShowWrapperSt>
+      {/*</OneShowWrapperSt>*/}
     </>
   )
 }
 
 export default OneShow
 
-const OneShowWrapperSt = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  row-gap: 1rem;
-  //height: 80vh;
-`
+// const OneShowWrapperSt = styled.div`
+//   display: flex;
+//   flex-flow: row wrap;
+//   align-items: center;
+//   row-gap: 1rem;
+// `
 
 const OneShowInnerSt = styled.div`
   display: flex;
   flex-flow: row wrap;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   column-gap: 2rem;
 `
@@ -69,6 +79,10 @@ const ImgWrapperSt = styled.div`
   overflow: hidden
 `
 
+// const InfoWraperSt = styled.div`
+// display: flex;
+//   flex-flow: column nowrap;
+// `
 
 const Img = styled.img`
   height: 85vh;
@@ -108,5 +122,21 @@ const A = styled.a`
   &:hover {
     color: ${colors.redColorHover};
     text-decoration: underline;
+  }
+`
+
+const Span = styled.span`
+  //position: relative;
+  //top: -3rem;
+  color: ${colors.blueColor};
+  //border: 1px solid ${colors.blueColor};
+  text-transform: uppercase;
+  padding: 0.3rem 1rem 0.3rem 0.3rem;
+  transition: .3s;
+  margin-bottom: 3rem;
+  &:hover{
+    color: ${colors.lightText};
+    cursor: pointer;
+    //background-color: ${colors.blueColor};
   }
 `

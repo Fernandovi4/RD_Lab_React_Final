@@ -5,7 +5,6 @@ import { NavLink } from 'react-router-dom'
 import { colors } from '../../utils/constants/colorConstants'
 
 const ShowsModule = ({ title, url, shows }) => {
-  console.log(shows)
   return (
     <ShowModuleSt>
       <NavLink to={url}>

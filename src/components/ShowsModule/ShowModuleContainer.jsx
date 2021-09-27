@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react'
+import React, { useEffect, useState } from 'react'
 import Loader from '../Loader/Loader'
 import ShowsModule from './ShowsModule'
 import { useDispatch, useSelector } from 'react-redux'
@@ -10,7 +10,8 @@ const ShowModuleContainer = ({ title, url }) => {
   const isFetchingData = useSelector((state) => state.shows.isFetchingData)
   const dispatch = useDispatch
 
-  console.log('aviles')
+
+
 
   // useEffect(() => {
   //   dispatch(fetchAllShows())

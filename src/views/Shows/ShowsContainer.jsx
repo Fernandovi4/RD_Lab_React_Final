@@ -14,10 +14,7 @@ const ShowsContainer = () => {
 
 
   return (!shows) ? <Loader /> :
-    <Shows
-      shows={shows}
-      handleFiltration={handleFiltration}
-    />
+    <Shows shows={shows} handleFiltration={handleFiltration} />
 
 }
 

@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import MovieCardContainer from '../../components/MovieCard/MovieCardContainer'
 import FiltrationForm from '../../components/FiltrationForm/FiltrationForm'
+import SearhBarContainer from '../../components/SearchBar/SearhBarContainer'
 
 const Shows = ({ shows, handleFiltration }) => {
 
@@ -11,7 +12,10 @@ const Shows = ({ shows, handleFiltration }) => {
 
   return (
     <>
-      <FiltrationForm onFormSubmit={onFormSubmit} />
+      <ControlsWrapperSt>
+        <SearhBarContainer>Search</SearhBarContainer>
+        <FiltrationForm onFormSubmit={onFormSubmit} />
+      </ControlsWrapperSt>
       <ShowsPageSt>
         {shows.map(el => {
           return <MovieCardContainer
@@ -35,4 +39,14 @@ const ShowsPageSt = styled.div`
   justify-content: space-around;
   gap: 2rem;
   margin: 0 auto;
+`
+
+const ControlsWrapperSt = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  row-gap: .3rem;
+  align-items: flex-end;
+  justify-content: space-around;
+  padding-bottom: 2rem;
+  
 `

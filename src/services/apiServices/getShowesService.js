@@ -9,6 +9,9 @@ export const showApi = {
   getShows() {
     return axiosInstance.get(`/shows`)
   },
+  getSearchedShows(searchedName){
+    return axiosInstance.get(`/search/shows?q=${searchedName}`)
+  }
 
 }
 

@@ -50,6 +50,8 @@ const FiltrationForm = ({ onFormSubmit }) => {
           </Field>
         </SelectWraperSt>
         <Button
+
+          padding="0.4rem"
           type="submit"
           title={'Sort show'}
           bgColor={colors.blueColor}
@@ -65,16 +67,17 @@ export default FiltrationForm
 const Form = styled.form`
   display: flex;
   flex-flow: row wrap;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  column-gap: .5rem;
+  column-gap: .3rem;
   row-gap: .5rem;
 `
 
 const SelectWraperSt = styled.div`
   display: flex;
   flex-flow: column nowrap;
-  padding: 0 1rem 1rem;
+  //align-items: center;
+  //padding: 0 .3rem 1rem;
   width: 200px;
 `
 

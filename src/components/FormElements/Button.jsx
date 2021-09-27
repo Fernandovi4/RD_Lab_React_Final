@@ -9,7 +9,7 @@ export default Button
 const ButtonSt = styled.button`
   background-color: ${props => props.bgColor};
   font-family: ${fonts.secondaryFont};
-  padding: .5rem;
+  padding: ${props => props.padding || ".5rem"};
   border: none;
   text-transform: uppercase;
   font-weight: bold;

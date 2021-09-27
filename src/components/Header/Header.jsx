@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import { colors } from '../../utils/constants/colorConstants'
-import SearchBar from '../SearchBar/SearchBar'
 import { Button } from '../FormElements'
+// import SearhBarContainer from '../SearchBar/SearhBarContainer'
 
 
 const Header = ({ isLoggedIn, logOut }) => {
@@ -15,7 +15,7 @@ const Header = ({ isLoggedIn, logOut }) => {
           <LogoSt>NETFLIX-LIKE</LogoSt>
         </NavLink>
       </div>
-      <SearchBar>Search</SearchBar>
+      {/*<SearhBarContainer>Search</SearhBarContainer>*/}
       {isLoggedIn &&
       <ControlsSt>
         <NavLink to="/personalcab">

@@ -11,6 +11,7 @@ import PersonalCab from './views/PersonalCab/PesonalCab'
 import HomeContainer from './views/Home/HomeContainer'
 import ShowsContainer from './views/Shows/ShowsContainer'
 import OneShowContainer from './views/OneShow/OneShowContainer'
+import SearchShowContainer from './views/Search/SearchShowContainer'
 
 function App() {
   return (
@@ -29,11 +30,15 @@ function App() {
             />
             <Route exact path="/people" render={() => <ShowsContainer />}
             />
-            <Route path="/personalcab" render={() => <PersonalCab />}
+            <Switch>
+            <Route  path="/search/shows:search" render={() => <SearchShowContainer />}
             />
+            </Switch>
             <Switch>
               <Route path="/show:id" render={() => <OneShowContainer />} />
             </Switch>
+            <Route path="/personalcab" render={() => <PersonalCab />}
+            />
           </ContentWrapperStyled>
         </AppWrapper>
       </Provider>
