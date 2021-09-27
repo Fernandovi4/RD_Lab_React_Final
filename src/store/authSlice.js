@@ -12,7 +12,6 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     setCurrentUserData: (state,action) => {
-      console.log(action)
       state.currentUserId = action.payload.userId
       state.currentUserEmail = action.payload.email
       state.rememberMe = action.payload.rememberMe

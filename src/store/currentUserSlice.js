@@ -19,7 +19,6 @@ export const currentUserSlice = createSlice({
       }
     },
     removeShowFromFavorites: (state, action) => {
-      console.log(action)
       state.favoriteShows = state.favoriteShows.filter(el => el !== action.payload)
     },
     addPeopleToFollowed: (state, action) => {

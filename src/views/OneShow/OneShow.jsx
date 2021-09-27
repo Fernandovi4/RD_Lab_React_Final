@@ -16,42 +16,59 @@ const OneShow = ({ show, showId, handleFollow, handleUnFollow }) => {
   return (
     <>
       {/*<OneShowWrapperSt>*/}
-        <OneShowInnerSt>
-          <ImgWrapperSt>
-            <Img
-              src={show.originalImgUrl}
-              alt={`official poster ot the ${show.name}`} />
-          </ImgWrapperSt>
-          {/*<InfoWraperSt>*/}
-
-            <UlSt>
-              <NavLink to="/shows"><Span>&#10094;&#10094;&#10094;    Back to shows</Span></NavLink>
-
-              <TitleSt>{show.name}</TitleSt>
-              <Li><SpanSt>Title:</SpanSt> {show.name}</Li>
-              <Li><SpanSt>Genres:</SpanSt> {[...show.genres.join(' / ')]}</Li>
-              <Li><SpanSt>Average rating:</SpanSt> {show.rating}</Li>
-              <Li><SpanSt>Runtime:</SpanSt> {show.runtime} min.</Li>
-              <Li><SpanSt>Summary:</SpanSt>{show.summary}</Li>
-              <Li><SpanSt>Official site:</SpanSt><A href={show.officialSite}> {show.officialSite}</A>
-              </Li>
-              {!isThisShowFavorite ?
-                <ToFavoriteBotton
-                  onClick={() => handleFollow()}
-                  title={'follow'}
-                /> :
-                <FromFollowBtnSt
-                  onClick={() => handleUnFollow()}
-                  title={'unfollow'}
-                />}
-              <Li>
-                <NavLink to="/shows"><Span>&#10094;&#10094;&#10094;    Back to shows</Span></NavLink>
-              </Li>
-
-            </UlSt>
-
-          {/*</InfoWraperSt>*/}
-        </OneShowInnerSt>
+      <OneShowInnerSt>
+        <ImgWrapperSt>
+          <Img
+            src={show.originalImgUrl}
+            alt={`official poster ot the ${show.name}`} />
+        </ImgWrapperSt>
+        {/*<InfoWraperSt>*/}
+        <UlSt>
+          <NavLink to="/shows"><Span>&#10094;&#10094;&#10094;    Back to shows</Span></NavLink>
+          <TitleSt>{show.name}</TitleSt>
+          <Li>
+            <SpanSt>Title:</SpanSt>
+            {show.name}
+          </Li>
+          <Li>
+            <SpanSt>Genres:</SpanSt>
+            {[...show.genres.join(' / ')]}
+          </Li>
+          <Li>
+            <SpanSt>Average rating:</SpanSt>
+            {show.rating}
+          </Li>
+          <Li>
+            <SpanSt>Runtime:</SpanSt>
+            {show.runtime} min.
+          </Li>
+          <Li>
+            <SpanSt>
+              Summary:
+            </SpanSt>
+            {show.summary}
+          </Li>
+          <Li>
+            <SpanSt>
+              Official site:
+            </SpanSt>
+            <A href={show.officialSite}> {show.officialSite}</A>
+          </Li>
+          {!isThisShowFavorite ?
+            <ToFavoriteBotton
+              onClick={() => handleFollow()}
+              title={'follow'}
+            /> :
+            <FromFollowBtnSt
+              onClick={() => handleUnFollow()}
+              title={'unfollow'}
+            />}
+          <Li>
+            <NavLink to="/shows"><Span>&#10094;&#10094;&#10094;    Back to shows</Span></NavLink>
+          </Li>
+        </UlSt>
+        {/*</InfoWraperSt>*/}
+      </OneShowInnerSt>
       {/*</OneShowWrapperSt>*/}
     </>
   )
@@ -129,14 +146,15 @@ const Span = styled.span`
   //position: relative;
   //top: -3rem;
   color: ${colors.blueColor};
-  //border: 1px solid ${colors.blueColor};
+    //border: 1px solid ${colors.blueColor};
   text-transform: uppercase;
   padding: 0.3rem 1rem 0.3rem 0.3rem;
   transition: .3s;
   margin-bottom: 3rem;
-  &:hover{
+
+  &:hover {
     color: ${colors.lightText};
     cursor: pointer;
-    //background-color: ${colors.blueColor};
+      //background-color: ${colors.blueColor};
   }
 `

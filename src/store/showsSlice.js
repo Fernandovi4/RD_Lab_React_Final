@@ -16,7 +16,6 @@ export const fetchAllShows = createAsyncThunk(
   async () => {
 
     const response = await showApi.getShows()
-    console.log('!!!')
     return response.data
   },
 )

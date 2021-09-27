@@ -6,9 +6,7 @@ import SearhBarContainer from '../../components/SearchBar/SearhBarContainer'
 
 const Shows = ({ shows, handleFiltration }) => {
 
-  const onFormSubmit = (val) => {
-    handleFiltration(val)
-  }
+  const onFormSubmit = val => handleFiltration(val)
 
   return (
     <>
@@ -17,15 +15,17 @@ const Shows = ({ shows, handleFiltration }) => {
         <FiltrationForm onFormSubmit={onFormSubmit} />
       </ControlsWrapperSt>
       <ShowsPageSt>
-        {shows.map(el => {
-          return <MovieCardContainer
-            showId={el.id}
-            name={el.name}
-            imgUrl={el.imgUrl}
-            genres={el.genres}
-            key={el.id}
-          />
-        })}
+        {shows.length === 0 ?
+          <h2>Nothing found with choosed parameters!</h2> :
+          shows.map(el => {
+            return <MovieCardContainer
+              showId={el.id}
+              name={el.name}
+              imgUrl={el.imgUrl}
+              genres={el.genres}
+              key={el.id}
+            />
+          })}
       </ShowsPageSt>
     </>
   )
@@ -48,5 +48,5 @@ const ControlsWrapperSt = styled.div`
   align-items: flex-end;
   justify-content: space-around;
   padding-bottom: 2rem;
-  
+
 `

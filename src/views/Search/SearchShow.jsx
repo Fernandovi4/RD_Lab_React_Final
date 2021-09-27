@@ -5,22 +5,29 @@ import { colors } from '../../utils/constants/colorConstants'
 import { NavLink } from 'react-router-dom'
 
 const SearchShow = ({ shows, searchedName }) => {
+  console.log('shows', shows)
   return (
     <>
       <NavLink to="/shows"><Span>&#10094;&#10094;&#10094;    Back to shows</Span></NavLink>
       <TitleSt>Search-results for : " <SpanSt>{searchedName}</SpanSt> "</TitleSt>
-      <SearchWrapperSt>
+      {shows.length === 0 ?
+        <>
+          <H2St> Nothig found for this request </H2St>
+        </> :
+        <SearchWrapperSt>
 
-        {shows.map(el => {
-          return <MovieCardContainer
-            showId={el.id}
-            name={el.name}
-            imgUrl={el.imgUrl}
-            genres={el.genres}
-            key={el.id}
-          />
-        })}
-      </SearchWrapperSt>
+          {shows.map(el => {
+            return <MovieCardContainer
+              showId={el.id}
+              name={el.name}
+              imgUrl={el.imgUrl}
+              genres={el.genres}
+              key={el.id}
+            />
+          })}
+        </SearchWrapperSt>
+      }
+
     </>
   )
 }
@@ -53,4 +60,10 @@ const Span = styled.span`
     color: ${colors.lightText};
     cursor: pointer;
   }
+`
+
+const H2St = styled.h2`
+text-align: center;
+  padding-top: 3rem;
+  color: ${colors.redColor};
 `

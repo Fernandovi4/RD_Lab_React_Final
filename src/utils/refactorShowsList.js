@@ -18,7 +18,7 @@ export const refactorShowsList = (showList) => {
 }
 
 export const refactorSearchShowsList = (showList) => {
-  console.log('showList', showList)
+
   return showList.map(show => {
     show =  {
       id: show.show.id,

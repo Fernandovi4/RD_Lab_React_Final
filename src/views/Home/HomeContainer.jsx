@@ -12,14 +12,14 @@ const HomeContainer = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(toggleLoader(true))
+    // dispatch(toggleLoader(true))
     showApi.getShows()
       .then(result => {
-        return dispatch(setShowsList(refactorShowsList(result.data)))
-      },
+          return dispatch(setShowsList(refactorShowsList(result.data)))
+        },
         (error) => console.log(error))
-    dispatch(toggleLoader(false))
-  },[dispatch])
+    // dispatch(toggleLoader(false))
+  }, [dispatch])
 
   return isFetchingData ?
     <Loader /> :

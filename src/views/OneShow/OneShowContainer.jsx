@@ -35,9 +35,9 @@ const OneShowContainer = () => {
       alert('Please logIn to have posibility of adding to favorites')
   }
 
-
   return (!showToRender) ?
-    <Loader /> :
+    // <Loader /> :todo
+    <h1> </h1>:
     <OneShow
       show={showToRender}
       showId={showId}
