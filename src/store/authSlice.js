@@ -22,4 +22,6 @@ export const authSlice = createSlice({
 
 export const { setCurrentUserData } = authSlice.actions
 
+export const isAuth = state => state.auth.isAuth;
+
 export default authSlice.reducer

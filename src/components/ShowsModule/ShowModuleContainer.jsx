@@ -1,26 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import Loader from '../Loader/Loader'
 import ShowsModule from './ShowsModule'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchAllShows, toggleLoader } from '../../store/showsSlice'
 
-const ShowModuleContainer = ({ title, url }) => {
-
-  const shows = useSelector((state) => state.shows.shows)
-  const isFetchingData = useSelector((state) => state.shows.isFetchingData)
-  const dispatch = useDispatch
+const ShowModuleContainer = ({ title, url, items, identifier }) => {
 
 
+  const [randomItems, setRandomItems] = useState([])
+
+  useEffect(() => {
+
+    items.length !== 0 &&
+    setRandomItems([...items]
+      .sort(() => Math.random() - Math.random()).slice(0, 6))
+  }, [items])
 
 
-  // useEffect(() => {
-  //   dispatch(fetchAllShows())
-  // }, [dispatch])
-  //todo
-
-  return isFetchingData ?
+  return !randomItems ?
     <Loader /> :
-    <ShowsModule shows={shows.slice(0,6)} title={title} url={url} />
+    // <h1>hello</h1>
+    <ShowsModule
+      items={randomItems}
+      title={title}
+      url={url}
+      identifier={identifier}
+    />
+
 }
 
 export default ShowModuleContainer

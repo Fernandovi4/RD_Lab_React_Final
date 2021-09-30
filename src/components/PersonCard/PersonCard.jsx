@@ -2,40 +2,44 @@ import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { FromFollowBtnSt, ToFavoriteBotton } from '../FormElements'
 import { useSelector } from 'react-redux'
-import { stateFavoriteShows } from '../../store/currentUserSlice'
+import { followedPeople } from '../../store/currentUserSlice'
 
-const MovieCard = (
+const PersonCard = (
   {
     imgUrl,
     name,
-    genres,
-    showId,
+    gender,
+    personId,
+    birthday,
+    deathday,
+    country,
+    officialSite,
     handleClick,
     handleFollow,
     handleUnFollow,
   }) => {
 
-  const favoriteShows = useSelector(stateFavoriteShows)
-  let isThisShowFavorite = favoriteShows.some(el => el === showId)
-  useEffect(() => {}, [favoriteShows])
+  const followedPeoples = useSelector(followedPeople)
+  let isThisPersonFollowed = followedPeoples.some(el => el === personId)
+  useEffect(() => {
+  }, [followedPeoples])
 
   return (
     <MovieCardSt>
       <ImgSt
         src={imgUrl}
         alt={`official poster of ${name}`}
-        onClick={() => handleClick(showId)}
+        onClick={() => handleClick(personId)}
       />
       <CardInfoSt>
         <CardTextSt>
           <h3>{name}</h3>
-          <GenresStyled>{genres}</GenresStyled>
+          <GenresStyled>{gender}</GenresStyled>
         </CardTextSt>
         <CardControlsSt>
           {
-            !isThisShowFavorite ?
+            !isThisPersonFollowed ?
               <ToFavoriteBotton
-
                 onClick={() => handleFollow()}
                 title={'follow'}
               /> :
@@ -51,7 +55,7 @@ const MovieCard = (
   )
 }
 
-export default MovieCard
+export default PersonCard
 
 const MovieCardSt = styled.div`
   display: flex;

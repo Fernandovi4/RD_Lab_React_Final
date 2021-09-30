@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { BrowserRouter, Route} from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useSelector} from 'react-redux'
 import { colors } from './utils/constants/colorConstants'
 import LoginContainer from './views/Login/LoginContainer'
 import RegistrationContainer from './views/Registration/RegistrationContainer'
@@ -12,13 +12,15 @@ import ShowsContainer from './views/Shows/ShowsContainer'
 import OneShowContainer from './views/OneShow/OneShowContainer'
 import SearchShowContainer from './views/Search/SearchShowContainer'
 import PrivateRoute from './components/PrivateRoute/PrivateRoute'
+import { isAuth } from './store/authSlice'
+
 
 function App() {
 
-  const auth = useSelector((state) => state.auth.isAuth)
+  const  auth  = useSelector(isAuth)
 
   return (
-    <BrowserRouter>
+      <BrowserRouter>
         <AppWrapper>
           <Route path="/login" render={() => <LoginContainer />} />
           <Route path="/registration" render={() => <RegistrationContainer />} />
@@ -29,10 +31,10 @@ function App() {
             <Route exact path="/people" render={() => <ShowsContainer />} />
             <Route path="/search/shows:search" render={() => <SearchShowContainer />} />
             <Route path="/show:id" render={() => <OneShowContainer />} />
-            <PrivateRoute auth={auth} path="/personalcab" component={ ()=>(<PersonalCab/>) } />
+            <PrivateRoute auth={auth} path="/personalcab" component={() => (<PersonalCab />)} />
           </ContentWrapperStyled>
         </AppWrapper>
-    </BrowserRouter>
+      </BrowserRouter>
   )
 }
 

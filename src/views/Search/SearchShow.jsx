@@ -5,7 +5,7 @@ import { colors } from '../../utils/constants/colorConstants'
 import { NavLink } from 'react-router-dom'
 
 const SearchShow = ({ shows, searchedName }) => {
-  console.log('shows', shows)
+
   return (
     <>
       <NavLink to="/shows"><Span>&#10094;&#10094;&#10094;    Back to shows</Span></NavLink>

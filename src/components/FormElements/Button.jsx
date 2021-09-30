@@ -19,4 +19,7 @@ const ButtonSt = styled.button`
     background-color: ${props => props.bgColorHover};
     transition: .3s;
   }
+  &:active {
+    background-color: ${props => props.bgColor};
+  }
 `

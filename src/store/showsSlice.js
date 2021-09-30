@@ -52,4 +52,7 @@ export const {
   setSearchedShowName,
 } = showsSlice.actions
 
+export const stateShows = state => state.shows.shows;
+export const stateIsFetchingData = state => state.shows.isFetchingData;
+
 export default showsSlice.reducer
