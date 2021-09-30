@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import MovieCardContainer from '../../components/MovieCard/MovieCardContainer'
-import FiltrationForm from '../../components/FiltrationForm/FiltrationForm'
-import SearhBarContainer from '../../components/SearchBar/SearhBarContainer'
+import FiltrationShowsForm from '../../components/FiltrationShowsForm/FiltrationShowsForm'
+import SearHBarContainer from '../../components/SearchBar/SearсhBarContainer'
 
 const Shows = ({ shows, handleFiltration }) => {
 
@@ -11,8 +11,8 @@ const Shows = ({ shows, handleFiltration }) => {
   return (
     <>
       <ControlsWrapperSt>
-        <SearhBarContainer>Search</SearhBarContainer>
-        <FiltrationForm onFormSubmit={onFormSubmit} />
+        <SearHBarContainer>Search</SearHBarContainer>
+        <FiltrationShowsForm onFormSubmit={onFormSubmit} />
       </ControlsWrapperSt>
       <ShowsPageSt>
         {shows.length === 0 ?

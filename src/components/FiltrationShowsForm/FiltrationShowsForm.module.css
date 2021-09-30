@@ -1,0 +1,14 @@
+.select {
+    background-color: #232323;
+    color: gainsboro;
+    outline: transparent 2px solid;
+    padding: .3rem;
+}
+.select:focus-visible{
+     outline: #008ace 2px solid;
+     border: transparent;
+ }
+
+.option{
+    color: gainsboro;
+}

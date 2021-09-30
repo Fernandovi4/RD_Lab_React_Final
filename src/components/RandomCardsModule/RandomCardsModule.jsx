@@ -6,7 +6,7 @@ import { colors } from '../../utils/constants/colorConstants'
 import { Button } from '../FormElements'
 import PersonCardContainer from '../PersonCard/PersonCardContainer'
 
-const ShowsModule = (props) => {
+const RandomCardsModule = (props) => {
   const { items, title, url, identifier } = props
 
   return (
@@ -54,7 +54,7 @@ const ShowsModule = (props) => {
   )
 }
 
-export default ShowsModule
+export default RandomCardsModule
 
 const ShowModuleSt = styled.div`
   position: relative;

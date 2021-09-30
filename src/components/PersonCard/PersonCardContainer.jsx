@@ -26,7 +26,7 @@ const PersonCardContainer = (
   const isAuthenticated = useSelector(isAuth)
 
   const getIdOfPerson = (personId) => {
-    history.push(`/show:${personId}`)
+    history.push(`/person:${personId}`)
   }
 
   const handleFollow = () => {

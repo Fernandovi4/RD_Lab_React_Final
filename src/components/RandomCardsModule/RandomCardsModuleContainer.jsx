@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Loader from '../Loader/Loader'
-import ShowsModule from './ShowsModule'
+import RandomCardsModule from './RandomCardsModule'
 
-const ShowModuleContainer = ({ title, url, items, identifier }) => {
+const RandomCardsModuleContainer = ({ title, url, items, identifier }) => {
 
 
   const [randomItems, setRandomItems] = useState([])
@@ -18,7 +18,7 @@ const ShowModuleContainer = ({ title, url, items, identifier }) => {
   return !randomItems ?
     <Loader /> :
     // <h1>hello</h1>
-    <ShowsModule
+    <RandomCardsModule
       items={randomItems}
       title={title}
       url={url}
@@ -27,4 +27,4 @@ const ShowModuleContainer = ({ title, url, items, identifier }) => {
 
 }
 
-export default ShowModuleContainer
+export default RandomCardsModuleContainer

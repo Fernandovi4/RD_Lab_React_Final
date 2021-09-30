@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import cl from './FiltrationForm.module.css'
+import cl from './FiltrationShowsForm.module.css'
 import { Button } from '../FormElements'
 import { genresConstants, ratingConstants, runTimeConstants } from '../../utils/constants/showsConstants'
 import { colors } from '../../utils/constants/colorConstants'
 import { FormikProvider, useFormik, Field } from 'formik'
 
-const FiltrationForm = ({ onFormSubmit }) => {
+const FiltrationShowsForm = ({ onFormSubmit }) => {
 
 
   const formik = useFormik({
@@ -19,7 +19,7 @@ const FiltrationForm = ({ onFormSubmit }) => {
   return (
     <FormikProvider value={formik}>
       <Form onSubmit={formik.handleSubmit}>
-        <SelectWraperSt>
+        <SelectWrapperSt>
           <LabelSt htmlFor="genre">by genre</LabelSt>
           <Field as={'select'} name="genre" className={cl.select}>
             {genresConstants.map(el =>
@@ -28,9 +28,9 @@ const FiltrationForm = ({ onFormSubmit }) => {
               </option>,
             )}
           </Field>
-        </SelectWraperSt>
-        <SelectWraperSt>
-          <LabelSt htmlFor="genre">by rating</LabelSt>
+        </SelectWrapperSt>
+        <SelectWrapperSt>
+          <LabelSt htmlFor="rating">by rating</LabelSt>
           <Field as={'select'} name="rating" className={cl.select}>
             {ratingConstants.map(el =>
               <option key={el.value} value={el.value} className={cl.option}>
@@ -38,9 +38,9 @@ const FiltrationForm = ({ onFormSubmit }) => {
               </option>,
             )}
           </Field>
-        </SelectWraperSt>
-        <SelectWraperSt>
-          <LabelSt htmlFor="genre">by runtime</LabelSt>
+        </SelectWrapperSt>
+        <SelectWrapperSt>
+          <LabelSt htmlFor="runtime">by runtime</LabelSt>
           <Field as={'select'} name="runtime" className={cl.select}>
             {runTimeConstants.map(el =>
               <option key={el.value} value={el.value} className={cl.option}>
@@ -48,12 +48,12 @@ const FiltrationForm = ({ onFormSubmit }) => {
               </option>,
             )}
           </Field>
-        </SelectWraperSt>
+        </SelectWrapperSt>
         <Button
 
           padding="0.4rem"
           type="submit"
-          title={'Sort show'}
+          title={'Sort'}
           bgColor={colors.blueColor}
           bgColorHover={colors.blueColorHover}
         />
@@ -62,7 +62,7 @@ const FiltrationForm = ({ onFormSubmit }) => {
   )
 }
 
-export default FiltrationForm
+export default FiltrationShowsForm
 
 const Form = styled.form`
   display: flex;
@@ -73,7 +73,7 @@ const Form = styled.form`
   row-gap: .5rem;
 `
 
-const SelectWraperSt = styled.div`
+const SelectWrapperSt = styled.div`
   display: flex;
   flex-flow: column nowrap;
   //align-items: center;

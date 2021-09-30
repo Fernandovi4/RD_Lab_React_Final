@@ -13,6 +13,9 @@ import OneShowContainer from './views/OneShow/OneShowContainer'
 import SearchShowContainer from './views/Search/SearchShowContainer'
 import PrivateRoute from './components/PrivateRoute/PrivateRoute'
 import { isAuth } from './store/authSlice'
+import OnePerson from './views/OnePerson/OnePerson'
+import OnePersonContainer from './views/OnePerson/OnePersonContainer'
+import PeoplesContainer from './views/Peoples/PeoplesContainer'
 
 
 function App() {
@@ -28,9 +31,10 @@ function App() {
           <ContentWrapperStyled>
             <Route exact path="/" render={() => <HomeContainer />} />
             <Route exact path="/shows" render={() => <ShowsContainer />} />
-            <Route exact path="/people" render={() => <ShowsContainer />} />
+            <Route exact path="/people" render={() => <PeoplesContainer />} />
             <Route path="/search/shows:search" render={() => <SearchShowContainer />} />
             <Route path="/show:id" render={() => <OneShowContainer />} />
+            <Route path="/person:id" render={() => <OnePersonContainer />} />
             <PrivateRoute auth={auth} path="/personalcab" component={() => (<PersonalCab />)} />
           </ContentWrapperStyled>
         </AppWrapper>

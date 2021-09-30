@@ -4,7 +4,7 @@ import { Redirect} from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setSearchedShowName } from '../../store/showsSlice'
 
-const SearhBarContainer = () => {
+const SearHBarContainer = () => {
 
   const [searchedText, setSearchedText] = useState('')
   const dispatch = useDispatch()
@@ -23,4 +23,4 @@ const SearhBarContainer = () => {
   )
 }
 
-export default SearhBarContainer
+export default SearHBarContainer

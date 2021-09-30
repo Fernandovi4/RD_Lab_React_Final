@@ -1,19 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
-import ShowModuleContainer from '../../components/ShowsModule/ShowModuleContainer'
+import RandomCardsModuleContainer from '../../components/RandomCardsModule/RandomCardsModuleContainer'
 
 const Home = ({shows,people}) => {
 
   return (
     <HomePageSt>
 
-      < ShowModuleContainer
+      < RandomCardsModuleContainer
         items={shows}
         title={'PRESS TO Go to "All shows". . .'}
         url={'/shows'}
         identifier={'shows'}
       />
-      < ShowModuleContainer
+      < RandomCardsModuleContainer
         items={people}
         title={`PRESS TO Go to "All people". . .`}
         url={'/people'}
